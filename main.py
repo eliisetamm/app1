@@ -36,7 +36,7 @@ with col1:
     st.markdown("Otstarve: tootetutvustustekstide personaliseerimine igale kliendile või kliendigruppidele; väljundtekst on kohandatud kliendi a) vanuserühmaga ja b) hobbitegevusega; sisendtekstiks on neutraalses vormis tootekirjeldus. \
 
 with col2:
-    st.image(image='windows.jpg', caption='PVC, wood and aluminium windows')
+    st.image(image='windows.png', caption='PVC, wood and aluminium windows')
 
 st.markdown("## Enter Your Content To Convert")
 
