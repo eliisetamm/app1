@@ -9,7 +9,7 @@ template = """
     PRODUCT input text: {content};
     CUSTOMER age group (y): {agegroup};
     CUSTOMER main Hobby: {income};
-    TASK: Write a product description that is tailored into this customer's Age group and income. Use age group specific slang.;
+    TASK: Write a product description that is tailored into this customer's Age group and health_condition. Use age group specific slang.;
     FORMAT: Present the result in the following order: (PRODUCT DESCRIPTION), (BENEFITS), (USE CASE);
     PRODUCT DESCRIPTION: describe the product in 5 sentences;
     BENEFITS: describe in 3 sentences why this product is perfect considering customers age group and income;
@@ -33,8 +33,8 @@ st.header("Personaliseeritud turundusteksti konverter")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("Otstarve: tootetutvustustekstide personaliseerimine igale kliendile või kliendigruppidele; väljundtekst on kohandatud kliendi a) vanuserühmaga ja b) hobbitegevusega; sisendtekstiks on neutraalses vormis tootekirjeldus. \
-   
+    st.markdown("Otstarve: Ettevõtte veebilehel toodete info ja tekstide personaliseerimine klientide jaoks. ; väljundtekst on kohandatud kliendi a) valitud materjali ja b) eelarvega; sisendtekstiks on neutraalses vormis akende üldine kirjeldus.")
+
 with col2:
     st.image(image='windows.png', caption='Windows')
 
@@ -45,7 +45,7 @@ def get_api_key():
     if openai_api_key:
         return openai_api_key
     # If OPENAI_API_KEY environment variable is not set, prompt user for input
-    input_text = streamlit.text_input(label="OpenAI API Key ",  placeholder="Ex: sk-2twmA8tfCb8un4...", key="openai_api_key_input")
+    input_text = st.text_input(label="OpenAI API Key ",  placeholder="Ex: sk-2twmA8tfCb8un4...", key="openai_api_key_input")
     return input_text
 
 openai_api_key = get_api_key()
@@ -57,7 +57,7 @@ with col1:
         ('9-15', '16-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80-100'))
     
 def get_hobby():
-    input_text = st.text_input(label="Customers income", key="hobby_input")
+    input_text = st.text_input(label="Customers health_condition", key="hobby_input")
     return input_text
 
 hobby_input = get_hobby()
@@ -74,7 +74,7 @@ if len(content_input.split(" ")) > 700:
 
 def update_text_with_example():
     print ("in updated")
-    st.session_state.content_input = "windows, all clolors, PVC, responsible manufacturing"
+    st.session_state.content_input = "windows, all clolors, pvc, wood, aluminium, responsible manufacturing"
 
 st.button("*GENERATE TEXT*", type='secondary', help="Click to see an example of the content you will be converting.", on_click=update_text_with_example)
 
