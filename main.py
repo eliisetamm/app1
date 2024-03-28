@@ -8,7 +8,7 @@ template = """
  You are a marketing copywriter with 20 years of experience. You are analyzing customer's background to write personalized product description that only this customer will receive; 
     PRODUCT input text: {content};
     CUSTOMER age group (y): {agegroup};
-    CUSTOMER main Income: {income};
+    CUSTOMER main Hobby: {income};
     TASK: Write a product description that is tailored into this customer's Age group and income. Use age group specific slang.;
     FORMAT: Present the result in the following order: (PRODUCT DESCRIPTION), (BENEFITS), (USE CASE);
     PRODUCT DESCRIPTION: describe the product in 5 sentences;
@@ -34,11 +34,9 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("Otstarve: tootetutvustustekstide personaliseerimine igale kliendile või kliendigruppidele; väljundtekst on kohandatud kliendi a) vanuserühmaga ja b) hobbitegevusega; sisendtekstiks on neutraalses vormis tootekirjeldus. \
-    \n\n Kasutusjuhend: 1) valmista ette tootekirjeldus (sisendtekst). 2) määra tarbijasegemendid lähtuvalt vanuserühma ja hobbide kombinatsioonidest. 3) sisesta ükshaaval tarbijasegmentide lõikes eeltoodud info äpi kasutajaliideses, saada ära. \
-    4) kopeeri ükshaaval tarbijasegmentide lõikes äpi väljundteksti kõnealuse toote tutvustuslehele.")
 
 with col2:
-    st.image(image='companylogo.jpg', caption='Natural and healthy shirts for everybody')
+    st.image(image='seicom.jpg', caption='PVC Windows')
 
 st.markdown("## Enter Your Content To Convert")
 
@@ -69,28 +67,3 @@ def get_text():
     return input_text
 
 content_input = get_text()
-
-if len(content_input.split(" ")) > 700:
-    st.write("Please enter a shorter content. The maximum length is 700 words.")
-    st.stop()
-
-def update_text_with_example():
-    print ("in updated")
-    st.session_state.content_input = "t shirts, all clolors, cotton, responsible manufacturing"
-
-st.button("*GENERATE TEXT*", type='secondary', help="Click to see an example of the content you will be converting.", on_click=update_text_with_example)
-
-st.markdown("### Your customer tailored content:")
-
-if content_input:
-#    if not openai_api_key:
-#        st.warning('Please insert OpenAI API Key. Instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key)', icon="⚠️")
-#        st.stop()
-
-    llm = load_LLM(openai_api_key=openai_api_key)
-
-    prompt_with_content = prompt.format(agegroup=option_agegroup, income=hobby_input, content=content_input)
-
-    formatted_content = llm(prompt_with_content)
-
-    st.write(formatted_content)
