@@ -9,7 +9,7 @@ template = """
     PRODUCT input text: {content};
     CUSTOMER age group (y): {agegroup};
     CUSTOMER main Hobby: {income};
-    TASK: Write a product description that is tailored into this customer's Age group and health_condition. Use age group specific slang.;
+    TASK: Write a product description that is tailored into this customer's Age group and income. Use age group specific slang.;
     FORMAT: Present the result in the following order: (PRODUCT DESCRIPTION), (BENEFITS), (USE CASE);
     PRODUCT DESCRIPTION: describe the product in 5 sentences;
     BENEFITS: describe in 3 sentences why this product is perfect considering customers age group and income;
@@ -57,7 +57,7 @@ with col1:
         ('9-15', '16-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80-100'))
     
 def get_hobby():
-    input_text = st.text_input(label="Customers health_condition", key="hobby_input")
+    input_text = st.text_input(label="Customers income", key="hobby_input")
     return input_text
 
 hobby_input = get_hobby()
