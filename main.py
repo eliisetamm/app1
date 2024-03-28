@@ -36,7 +36,7 @@ with col1:
     st.markdown("Otstarve: tootetutvustustekstide personaliseerimine igale kliendile või kliendigruppidele; väljundtekst on kohandatud kliendi a) vanuserühmaga ja b) hobbitegevusega; sisendtekstiks on neutraalses vormis tootekirjeldus. \
 
 with col2:
-    st.image(image='seicom.jpg', caption='PVC Windows')
+    st.image(image='windows.jpg', caption='PVC, wood and aluminium windows')
 
 st.markdown("## Enter Your Content To Convert")
 
@@ -67,3 +67,28 @@ def get_text():
     return input_text
 
 content_input = get_text()
+
+if len(content_input.split(" ")) > 700:
+    st.write("Please enter a shorter content. The maximum length is 700 words.")
+    st.stop()
+
+def update_text_with_example():
+    print ("in updated")
+    st.session_state.content_input = "windows, all clolors, PVC, responsible manufacturing"
+
+st.button("*GENERATE TEXT*", type='secondary', help="Click to see an example of the content you will be converting.", on_click=update_text_with_example)
+
+st.markdown("### Your customer tailored content:")
+
+if content_input:
+#    if not openai_api_key:
+#        st.warning('Please insert OpenAI API Key. Instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key)', icon="⚠️")
+#        st.stop()
+
+    llm = load_LLM(openai_api_key=openai_api_key)
+
+    prompt_with_content = prompt.format(agegroup=option_agegroup, income=hobby_input, content=content_input)
+
+    formatted_content = llm(prompt_with_content)
+
+    st.write(formatted_content)
