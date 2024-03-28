@@ -33,7 +33,7 @@ st.header("Personaliseeritud turundusteksti konverter")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.markdown("Otstarve: Ettevõtte veebilehel toodete info ja tekstide personaliseerimine klientide jaoks. ; väljundtekst on kohandatud kliendi a) valitud materjali ja b) eelarvega; sisendtekstiks on neutraalses vormis akende üldine kirjeldus.")
+    st.markdown("Otstarve: Ettevõtte veebilehel toodete info ja tekstide personaliseerimine klientide jaoks; väljundtekst on kohandatud kliendi a) valitud materjali ja b) eelarvega; sisendtekstiks on neutraalses vormis akende üldine kirjeldus.")
 
 with col2:
     st.image(image='windows.png', caption='Windows')
